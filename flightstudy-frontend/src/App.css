@@ -1,0 +1,5 @@
+@media print {
+  /* esconde tudo menos o cartão */
+  nav, button { display: none; }
+  .boarding-card { display: block; }
+}
