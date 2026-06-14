@@ -1,6 +1,6 @@
 # Airline Manager Application — Frontend
 
-React frontend for the Airline Manager Application. Connects to the [backend](https://github.com/dpontoavi/FlightManagerApplication-Backend) to display and manage flights and boarding passes.
+React frontend for the Airline Manager Application. Connects to the [backend](https://github.com/dpontoavi/FlightManagerApplication-backend) to display and manage flights and boarding passes.
 
 ### Summary
 
@@ -63,7 +63,7 @@ The application will be available at `http://localhost:5173`.
 # <a id="connect">Connecting to the backend</a>
 
 Make sure the backend is running before starting the frontend.
-Refer to the [backend repository](https://github.com/dpontoavi/FlightManagerApplication-Backend) for setup instructions.
+Refer to the [backend repository](https://github.com/dpontoavi/FlightManagerApplication-backend) for setup instructions.
 
 ### Admin access
 
