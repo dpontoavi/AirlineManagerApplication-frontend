@@ -9,7 +9,7 @@ export const client = axios.create({
     baseURL: API_BASE
 });
 export function setAuthToken(token: string) {
-    client.defaults.headers.common['Authorization'] = 'Bearer ${token}';
+    client.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 }
 export function clearAuthToken() {
     delete client.defaults.headers.common['Authorization'];

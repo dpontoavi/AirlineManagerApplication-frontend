@@ -1,8 +1,8 @@
 export interface Airport {
   IATA: string;
   ICAO: string;
-  name: string;
-  city: string;
+  NAME: string;
+  CITY: string;
 }
 
 export interface Aircraft {
