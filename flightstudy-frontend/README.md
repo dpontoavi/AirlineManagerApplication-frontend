@@ -1,73 +1,113 @@
-# React + TypeScript + Vite
+# Airline Manager Application — Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React frontend for the Airline Manager Application. Connects to the [backend](https://github.com/your-username/AirlineManagerApplication-backend) to display and manage flights and boarding passes.
 
-Currently, two official plugins are available:
+### Summary
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- [Features](#features)
+- [How to run locally](#run)
+- [Connecting to the backend](#connect)
+- [Project Structure](#structure)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+# <a id="features">Features</a>
 
-## Expanding the ESLint configuration
+- View all flights and boarding passes without authentication
+- Admin login via randomized URL for security
+- Create, delete and manage flights when authenticated
+- Generate boarding passes from existing flights
+- Cancel boarding passes
+- Glass morphism UI with responsive layout
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# <a id="run">How to run locally</a>
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Requirements
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Node.js 18+
+- npm
+- git
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/dpontoavi/AirlineManagerApplication-frontend.git
+cd AirlineManagerApplication-frontend
+cd flightstudy-frontend
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+### 3. Check if the API_BASE is correct at `/src/api/client.ts`
+
+```TypeScript
+  const API_BASE = 'http://localhost:8080' //this is the backend link
+```
+
+### 4. Start the development server
+
+```bash
+npm run dev
+```
+
+The application will be available at `http://localhost:5173`.
+
+---
+
+# <a id="connect">Connecting to the backend</a>
+
+Make sure the backend is running before starting the frontend.
+Refer to the [backend repository](https://github.com/your-username/AirlineManagerApplication-backend) for setup instructions.
+
+### Admin access
+
+1. Start the backend and copy the admin URL from the server console:
+```
+INFO - Admin panel available at: </auth/xxxxxxxxxxxxxxxx> <-- copy starting from /auth
+```
+
+2. Navigate to `localhost:5153/admin` in the frontend
+3. Paste the URL, enter your env credentials of the backend and log in
+4. Admin buttons (create, delete, generate boarding pass) will appear after login
+
+Tokens expire after **1 hour** — log in again to refresh.
+If after refreshing the admin login panel is still "authenticated" simply close the tab and reopen
+
+---
+
+# <a id="structure">Project Structure</a>
+
+```
+src/
+├── api/                 ← API client and request functions
+│   ├── client.ts        ← Axios instance and auth token management
+│   ├── flights.ts       ← Flight API calls
+│   └── boardingPasses.ts← Boarding pass API calls
+├── components/          ← Reusable components
+│   └── NewFlightModal.tsx
+├── pages/               ← Application pages
+│   ├── HomePage.tsx     ← Main page with flights and boarding passes
+│   ├── FlightsPage.tsx  ← Flight listing and management
+│   ├── BoardingPassesPage.tsx
+│   └── AdminPage.tsx    ← Admin login
+├── types/               ← TypeScript interfaces
+│   └── index.ts
+└── App.tsx              ← Route definitions
+```
+
+---
+
+### Tech Stack
+
+- [React 19](https://react.dev)
+- [TypeScript](https://www.typescriptlang.org)
+- [Vite](https://vitejs.dev)
+- [Tailwind CSS v4](https://tailwindcss.com)
+- [Axios](https://axios-http.com)
+- [React Router v6](https://reactrouter.com)
