@@ -27,30 +27,36 @@ export function BoardingPassesPage({ token }: BoardingPassesPageProps) {
 
   if (loading) return <p>Carregando cartões...</p>;
   if (error) return <p>{error}</p>;
-  if (!passes.length) return <p className="p-4 text-gray-500 text-8xl">Nenhum cartão de embarque ainda.</p>;
+  if (!passes.length) return <p className="p-4 text-gray-500 text-2xl">Nenhum cartão de embarque emitido.</p>;
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 p-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
         {passes.map(pass => (
-          <div key={pass.id} className="bg-white border border-gray-200 rounded-[20px] p-4 shadow-sm boarding-card transition-all duration-200 hover:py-15 hover:rounded-[30px]">
+          <div key={pass.id} className="bg-white border border-gray-200 rounded-[20px] p-4 shadow-sm boarding-card transition-all duration-200 hover:py-8 hover:rounded-[30px]">
+            <div className='grid grid-cols-4 gap-x-4 text-xl'>
+              <span className="text-gray-400">Partida</span>
+              <span className="text-right">{pass.flightDepart}</span>
+              <span className="text-gray-400">Chegada</span>
+              <span className="text-right">{pass.flightArrival}</span>
+            </div>
             <div className="flex items-center justify-between mb-2">
               <span className="text-8xl font-medium">{pass.flightNumber}</span>
               <span className="text-xl px-2 py-1 rounded-full bg-blue-50 text-blue-700">{pass.status}</span>
             </div>
             <div className="text-4xl text-gray-700 font-medium mb-10">{pass.passenger}</div>
-            <div className="grid grid-cols-2 gap-y-5 text-2xl">
+            <div className="gap-y-5 text-2xl">
+              <div className="grid grid-cols-3 flex-items-center text-center pb-5">
+                <span className="text-gray-400">Terminal</span>
+                <span className="text-gray-400">Portão</span>
+                <span className="text-gray-400">Grupo</span>
+                <span className="text-black">{pass.terminal}</span>
+                <span className="text-black">{pass.gate}</span>
+                <span className="text-black">{pass.group}</span>
+              </div>
+              <div className="grid grid-cols-2">
               <span className="text-gray-400">Assento</span>
               <span className="text-right">{pass.seat}</span>
-              <span className="text-gray-400">Terminal</span>
-              <span className="text-right">{pass.terminal}</span>
-              <span className="text-gray-400">Portão</span>
-              <span className="text-right">{pass.gate}</span>
-              <span className="text-gray-400">Grupo</span>
-              <span className="text-right">{pass.group}</span>
-              <span className="text-gray-400">Partida</span>
-              <span className="text-right">{pass.flightDepart}</span>
-              <span className="text-gray-400">Chegada</span>
-              <span className="text-right">{pass.flightArrival}</span>
+              </div>
             </div>
 
             {token && (

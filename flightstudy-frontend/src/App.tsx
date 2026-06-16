@@ -1,19 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { HomePage } from './pages/Homepage';
 import { AdminPage } from './pages/AdminPage';
+import { setAuthToken } from './api/client';
 
 
 
 
 export default function App() {
-    const [token, setToken] = useState<string | null>(
-    sessionStorage.getItem('token')  // lê o token salvo ao carregar
+  const [token, setToken] = useState<string | null>(
+    sessionStorage.getItem('token')
   );
 
-  function handleLogin(token: string) {
-    sessionStorage.setItem('token', token);  // salva ao fazer login
-    setToken(token);
+  useEffect(() => {
+    if (token) setAuthToken(token);
+  }, [token]);
+
+  function handleLogin(newToken: string) {
+    sessionStorage.setItem('token', newToken);
+    setAuthToken(newToken);
+    setToken(newToken);
   }
 
   return (

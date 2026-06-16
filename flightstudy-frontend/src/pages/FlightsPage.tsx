@@ -11,6 +11,7 @@ interface FlightsPageProps {
 }
 
 export function FlightsPage({ token }: FlightsPageProps) {
+
     const [flights, setFlights] = useState<Flight[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
@@ -28,7 +29,23 @@ export function FlightsPage({ token }: FlightsPageProps) {
 
     if (loading) return <p>Carregando voos...</p>
     if (error) return <p>{error}</p>
-    if (!flights.length) return <p>Nenhum voo cadastrado.</p>
+    if (!flights.length) {
+        return (  <>
+          <p className="p-4 text-gray-500">Nenhum voo cadastrado.</p>
+          {token && (
+            <button
+              onClick={() => setShowModal(true)}
+              className="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-red-500 text-white text-2xl shadow-lg z-50"
+            >
+              +
+            </button>
+          )}
+          {showModal && (
+            <NewFlightModal onClose={() => setShowModal(false)} onCreate={handleCreateFlight} />
+          )}
+        </>
+    );
+  }
 
     async function handleCreateFlight(flight: Omit<Flight, 'id'>) {
       const created = await createFlight(flight);
@@ -99,15 +116,20 @@ export function FlightsPage({ token }: FlightsPageProps) {
         </div>
       ))}
     </div>
-    {token && (
-         <button onClick={() => setShowModal(true)} className="...">
-              + Novo voo
-         </button>
+    {token !== null && token !== '' && (
+      
+         <button
+              onClick={() => setShowModal(true)}
+              className="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-red-500 text-white text-2xl shadow-lg z-50"
+            >
+              +
+            </button>
         )}
 
          {showModal && (
            <NewFlightModal onClose={() => setShowModal(false)} onCreate={handleCreateFlight} />
          )}
+        
     </>
     );
     
