@@ -102,6 +102,9 @@ src/
 ```
 
 ---
+# Considerations
+
+As per the [backend](https://github.com/dpontoavi/FlightManagerApplication-backend), the flight is assigned exclusively to a single passenger, this could lead to severe problems when using this frontend. Remember that this is a **studying tool** made for myself and my girlfriend and not solely intended for flight simulation! I'll consider releasing a version that creates only the flight and the ability to assign multiple passengers.
 
 ### Tech Stack
 
