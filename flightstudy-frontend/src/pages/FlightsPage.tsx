@@ -35,7 +35,7 @@ export function FlightsPage({ token }: FlightsPageProps) {
           {token && (
             <button
               onClick={() => setShowModal(true)}
-              className="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-red-500 text-white text-2xl shadow-lg z-50"
+              className="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-[#e89d10] text-white text-2xl shadow-lg z-50"
             >
               +
             </button>
@@ -120,7 +120,7 @@ export function FlightsPage({ token }: FlightsPageProps) {
       
          <button
               onClick={() => setShowModal(true)}
-              className="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-red-500 text-white text-2xl shadow-lg z-50"
+              className="fixed bottom-8 right-8 w-14 h-14 rounded-full bg-[#e89d10] text-white text-2xl shadow-lg z-50"
             >
               +
             </button>

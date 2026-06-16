@@ -68,7 +68,20 @@ export function NewFlightModal({ onClose, onCreate }: NewFlightModalProps) {
             </Row>
             <Row>
               <input placeholder="Companhia" onChange={e => setNested('aircraft', 'airline', e.target.value)} />
-              <input placeholder="Fabricante" onChange={e => setNested('aircraft', 'manufacturer', e.target.value)} />
+              <select
+                onChange={e => setNested('aircraft', 'manufacturer', e.target.value)}
+                className="border border-gray-200 rounded-xl px-4 py-2 text-sm"
+              >
+                <option value="">Fabricante</option>
+                <option value="AIRBUS">Airbus</option>
+                <option value="BOEING">Boeing</option>
+                <option value="EMBRAER">Embraer</option>
+                <option value="CESSNA">Cessna</option>
+                <option value="CIRRUS">Cirrus</option>
+                <option value="BOMBARDIER">Bombardier</option>
+                <option value="ATR">ATR</option>
+                <option value="COMAC">COMAC</option>
+              </select>
             </Row>
           </Section>
 
